@@ -351,7 +351,7 @@
           </div>
         </div>
         <p style="margin-top:0.85rem;font-weight:600;">
-          Multi-organization setup? Your platform administrator signs in with <code>superadmin</code> / <code>superadmin123</code> (and creates each org&rsquo;s own Admin account from the Superadmin portal).
+          If your organization was already given a custom admin username and password, sign in with those credentials instead of the defaults above.
         </p>
       </div>
 
@@ -614,7 +614,6 @@
             <label for="reset-user-select">2. Which Account?</label>
             <select id="reset-user-select" class="nb-select">
               <option value="admin" selected>admin (Default Admin)</option>
-              <option value="superadmin">superadmin (Superadmin)</option>
               <option value="custom">Custom username&hellip;</option>
             </select>
           </div>
@@ -722,7 +721,7 @@
             <span>Why does it say &ldquo;Invalid credentials&rdquo; even when I type admin123?</span>
           </summary>
           <div class="details-body">
-            <p>Someone already changed the <code>admin</code> password after the first setup, or you are signing in to a newly created organization whose admin username/password was set by the Superadmin. Restarting the app keeps your changed password, so use the <a href="#forgot-password">Password Reset Command Builder</a> above to set a fresh password.</p>
+            <p>Someone already changed the <code>admin</code> password after the first setup, or your organization uses a custom admin username and password. Restarting the app keeps your changed password, so use the <a href="#forgot-password">Password Reset Command Builder</a> above to set a fresh password.</p>
           </div>
         </details>
 
@@ -732,7 +731,7 @@
             <span>What if it says &ldquo;Organization is disabled&rdquo; when trying to log in?</span>
           </summary>
           <div class="details-body">
-            <p>If your school or council uses the multi-organization version of AFT, the platform <strong>Superadmin</strong> can temporarily enable or disable an organization&rsquo;s access. Contact your Superadmin so they can toggle your organization back to <strong>ACTIVE</strong>.</p>
+            <p>Your organization&rsquo;s workspace access is currently paused. Reach out to your system maintainer so they can re-enable your organization.</p>
           </div>
         </details>
 
@@ -771,15 +770,40 @@
         </details>
       </div>
     </section>
+
+    <!-- CREATOR PROMO -->
+    <section class="creator-banner" aria-labelledby="creator-heading">
+      <div class="creator-copy">
+        <span class="nb-tag nb-tag--navy">Built By</span>
+        <h2 id="creator-heading">Crafted by Amiel Josh Basug</h2>
+        <p>
+          Designed and engineered for student organizations across USLT (JPIA, SSC &amp; ICpEP.se). Want to see more software projects, dev tools, or get in touch?
+        </p>
+      </div>
+      <div class="creator-actions">
+        <a class="nb-btn nb-btn--navy" href="https://www.amiel.codes" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span>www.amiel.codes &nearr;</span>
+        </a>
+        <a class="nb-btn nb-btn--white" href="https://github.com/juswa005" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg>
+          <span>GitHub (@juswa005) &nearr;</span>
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="footer-inner">
       <div>
         <strong>ANINAW — Automated Fund Tracker (AFT)</strong>
-        <p style="font-size:0.9rem;opacity:0.9;">Help &amp; User Guide for JPIA-USLT, SSC-USLT &amp; ICpEP.se-USLT &bull; Hosted at <code>aft.amiel.codes</code></p>
+        <p style="font-size:0.9rem;opacity:0.9;">Help &amp; User Guide for JPIA-USLT, SSC-USLT &amp; ICpEP.se-USLT &bull; Built by <a href="https://www.amiel.codes" target="_blank" rel="noopener noreferrer">Amiel Josh Basug</a></p>
       </div>
-      <a href="#top">Back to top &uarr;</a>
+      <div class="footer-links">
+        <a href="https://www.amiel.codes" target="_blank" rel="noopener noreferrer">Portfolio (www.amiel.codes)</a>
+        <a href="https://github.com/juswa005" target="_blank" rel="noopener noreferrer">GitHub (@juswa005)</a>
+        <a href="#top">Back to top &uarr;</a>
+      </div>
     </div>
   </footer>
 </body>
