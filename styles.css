@@ -1106,44 +1106,6 @@ section[tabindex="-1"]:focus-visible {
   box-shadow: 0 0 0 4px var(--gold), var(--shadow-md);
 }
 
-/* Creator Promo Banner */
-.creator-banner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem;
-  background: var(--gold);
-  border: var(--border-w) solid var(--ink);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
-  padding: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .creator-banner {
-    padding: 2rem;
-  }
-}
-
-.creator-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.55rem;
-  max-inline-size: 62ch;
-}
-
-.creator-copy h2 {
-  font-size: clamp(1.35rem, 1.15rem + 0.85vw, 1.9rem);
-}
-
-.creator-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
 /* Footer */
 .site-footer {
   border-block-start: var(--border-w) solid var(--ink);
