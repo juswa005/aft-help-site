@@ -164,9 +164,9 @@ section[tabindex="-1"]:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  max-inline-size: 76rem;
+  max-inline-size: min(100%, 112rem);
   margin-inline: auto;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem clamp(0.85rem, 2vw, 2rem);
 }
 
 .header-inner > * {
@@ -191,8 +191,8 @@ section[tabindex="-1"]:focus-visible {
 }
 
 .site-logo img {
-  inline-size: 1.85rem;
-  block-size: 1.85rem;
+  inline-size: 2.15rem;
+  block-size: 2.15rem;
   object-fit: contain;
 }
 
@@ -335,18 +335,18 @@ section[tabindex="-1"]:focus-visible {
 
 /* Page Container */
 .page-main {
-  max-inline-size: 76rem;
+  max-inline-size: min(100%, 112rem);
   margin-inline: auto;
-  padding: 1.5rem 1rem 4rem;
+  padding: 1.5rem clamp(0.85rem, 2vw, 2rem) 4rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2.5rem;
 }
 
 @media (min-width: 768px) {
   .page-main {
-    padding: 2.5rem 1.5rem 5rem;
-    gap: 4rem;
+    padding: 2rem clamp(1.25rem, 2vw, 2rem) 4.5rem;
+    gap: 3.5rem;
   }
 }
 
@@ -1111,11 +1111,11 @@ section[tabindex="-1"]:focus-visible {
   border-block-start: var(--border-w) solid var(--ink);
   background: var(--navy);
   color: var(--surface);
-  padding: 2rem 1rem;
+  padding: 2rem clamp(0.85rem, 2vw, 2rem);
 }
 
 .footer-inner {
-  max-inline-size: 76rem;
+  max-inline-size: min(100%, 112rem);
   margin-inline: auto;
   display: flex;
   flex-wrap: wrap;
