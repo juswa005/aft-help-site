@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ANINAW AFT — Help &amp; User Guide (aft.amiel.codes)</title>
+  <meta name="description" content="Complete step-by-step guide for ANINAW Automated Fund Tracker: installation, first login, recording transactions, fixing slowdowns, and resetting forgotten passwords without losing data." />
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script type="module" src="./app.js"></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-logo" href="#top">
+        <img src="./assets/favicon-removebg.png" alt="" aria-hidden="true" />
+        <span>ANINAW AFT</span>
+        <span class="site-logo-badge">HELP</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <button
+          class="menu-button"
+          type="button"
+          popovertarget="site-menu"
+          popovertargetaction="toggle"
+          aria-controls="site-menu"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="square" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <span>Menu</span>
+        </button>
+
+        <ul id="site-menu" class="site-menu" popover="auto">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#install">1. Install</a></li>
+          <li><a href="#first-login">2. First Login</a></li>
+          <li><a href="#using-aft">3. Using AFT</a></li>
+          <li><a href="#slow-system">4. Slow System?</a></li>
+          <li><a href="#forgot-password">5. Forgot Password?</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="page-main">
+    <!-- HERO -->
+    <section id="overview" tabindex="-1" class="hero" aria-labelledby="hero-heading">
+      <div class="hero-copy">
+        <span class="nb-tag">Official Help Desk &bull; aft.amiel.codes</span>
+        <h1 id="hero-heading" class="hero-title">ANINAW Automated Fund Tracker Guide</h1>
+        <p class="hero-lead">
+          Your plain-language handbook—from installing the app on your computer and logging in for the first time, to tracking funds, speeding up a sluggish app, and recovering a forgotten password <strong>without losing a single record</strong>.
+        </p>
+        <div class="hero-actions">
+          <a class="nb-btn nb-btn--navy" href="#install">Start Installing</a>
+          <a class="nb-btn nb-btn--gold" href="#slow-system">App Running Slow?</a>
+          <a class="nb-btn nb-btn--orange" href="#forgot-password">Forgot Password?</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="Partner organizations and quick finder">
+        <div>
+          <span class="nb-tag nb-tag--navy">Built With USLT Orgs</span>
+        </div>
+        <div class="partner-logos">
+          <div class="partner-logo-box">
+            <img src="./assets/jpia-logo-removebg.png" alt="JPIA-USLT Logo" />
+            <span>JPIA-USLT</span>
+          </div>
+          <div class="partner-logo-box">
+            <img src="./assets/ssc-logo-removebg.png" alt="SSC-USLT Logo" />
+            <span>SSC-USLT</span>
+          </div>
+          <div class="partner-logo-box">
+            <img src="./assets/icpep-logo-removebg.png" alt="ICpEP.se-USLT Logo" />
+            <span>ICpEP.se-USLT</span>
+          </div>
+        </div>
+        <div class="search-bar-wrap">
+          <label for="guide-search-input"><strong>Quick Topic Finder</strong> (or press <kbd>Ctrl</kbd>+<kbd>F</kbd>)</label>
+          <div class="search-row">
+            <input
+              id="guide-search-input"
+              class="nb-input"
+              type="search"
+              placeholder="Search: password, slow, pdf..."
+            />
+            <button id="guide-search-clear" type="button" class="nb-btn nb-btn--white">Clear</button>
+          </div>
+          <p id="guide-search-status" class="field-note" role="status"></p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- QUICK TRIAGE CARDS -->
+    <section aria-label="Common problems quick links">
+      <div class="triage-grid">
+        <article class="triage-card triage-card--install" data-searchable>
+          <div>
+            <span class="nb-tag nb-tag--sky">New Computer?</span>
+            <h2 style="margin-top:0.75rem;">Install &amp; Launch AFT</h2>
+            <p style="margin-top:0.5rem;">You only need <strong>Docker Desktop</strong>. No coding tools or manual database setup required.</p>
+          </div>
+          <a class="nb-btn nb-btn--white" href="#install">Go to Setup Steps &rarr;</a>
+        </article>
+
+        <article class="triage-card triage-card--slow" data-searchable>
+          <div>
+            <span class="nb-tag">Recent Issue</span>
+            <h2 style="margin-top:0.75rem;">System Feeling Slow?</h2>
+            <p style="margin-top:0.5rem;">Lag does <strong>not</strong> mean your data is broken. Learn the safe 1-minute ways to make AFT snappy again.</p>
+          </div>
+          <a class="nb-btn nb-btn--white" href="#slow-system">Fix Slowdowns &rarr;</a>
+        </article>
+
+        <article class="triage-card triage-card--password" data-searchable>
+          <div>
+            <span class="nb-tag nb-tag--coral">Locked Out?</span>
+            <h2 style="margin-top:0.75rem;">Forgot Admin Password?</h2>
+            <p style="margin-top:0.5rem;">Generate a ready-to-paste command to reset your password <strong>without wiping any records</strong>.</p>
+          </div>
+          <a class="nb-btn nb-btn--white" href="#forgot-password">Recover Password &rarr;</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 1: INSTALLING -->
+    <section id="install" tabindex="-1" class="section-block" aria-labelledby="install-heading">
+      <div class="section-head">
+        <span class="nb-tag nb-tag--sky">Step 1 of 5</span>
+        <h2 id="install-heading">Installing &amp; Opening the System</h2>
+        <p>ANINAW runs right on your laptop or desktop inside <strong>Docker Desktop</strong>. Follow the tab for your computer below.</p>
+      </div>
+
+      <div class="nb-card" data-searchable>
+        <div class="tab-strip" role="tablist" aria-label="Choose your computer operating system">
+          <button
+            id="tab-win"
+            class="tab-btn"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-win"
+            tabindex="0"
+          >Windows</button>
+          <button
+            id="tab-mac"
+            class="tab-btn"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-mac"
+            tabindex="-1"
+          >macOS</button>
+          <button
+            id="tab-linux"
+            class="tab-btn"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-linux"
+            tabindex="-1"
+          >Linux</button>
+        </div>
+
+        <div id="panel-win" class="tab-panel" role="tabpanel" aria-labelledby="tab-win" style="margin-top:1.25rem;">
+          <ol class="step-list">
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">1</span>
+              <div class="step-body">
+                <strong>Install Docker Desktop</strong>
+                <p>Download and install Docker Desktop for Windows from <strong>docs.docker.com/desktop</strong>. Open Docker Desktop and wait until the bottom-left / tray icon turns green (running).</p>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">2</span>
+              <div class="step-body">
+                <strong>Run the One-Click Installer (or Docker Compose)</strong>
+                <p>Open the AFT project folder, open the <code>scripts</code> folder, and double-click <code>install_windows.bat</code>. (If Windows asks for Administrator permission, click <strong>Yes</strong>.) If your computer needs a restart to finish WSL/Docker setup, restart and let it resume automatically.</p>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">3</span>
+              <div class="step-body">
+                <strong>Open ANINAW in Your Browser</strong>
+                <p>Wait 2–5 minutes on the very first launch while Docker downloads the app files. Your browser will open automatically, or you can visit <code>http://localhost:5173</code> (or use the new <em>Automated Fund Tracker</em> shortcut on your Desktop).</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div id="panel-mac" class="tab-panel" role="tabpanel" aria-labelledby="tab-mac" hidden style="margin-top:1.25rem;">
+          <ol class="step-list">
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">1</span>
+              <div class="step-body">
+                <strong>Open the Installer</strong>
+                <p>Open the AFT project folder, open <code>scripts</code>, and double-click <code>install_mac.command</code>. It automatically checks for Homebrew and Docker Desktop, installs them if missing, and starts Docker.</p>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">2</span>
+              <div class="step-body">
+                <strong>Allow Docker &amp; Wait for First Launch</strong>
+                <p>If macOS asks for your Mac password or permission, approve it. Wait a few minutes on the first run for the app containers to finish setting up.</p>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">3</span>
+              <div class="step-body">
+                <strong>Open ANINAW</strong>
+                <p>Your browser will open <code>http://localhost:5173</code> automatically (and a shortcut is saved on your Desktop).</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div id="panel-linux" class="tab-panel" role="tabpanel" aria-labelledby="tab-linux" hidden style="margin-top:1.25rem;">
+          <ol class="step-list">
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">1</span>
+              <div class="step-body">
+                <strong>Install Docker &amp; Run the Setup Script</strong>
+                <p>Make sure Docker Engine + Docker Compose are installed, then run the setup script inside the project folder:</p>
+                <div class="code-box">
+                  <div class="code-box-head">
+                    <span class="code-label">Linux Terminal</span>
+                    <span class="copy">
+                      <button type="button" class="copy-button" command="--copy" commandfor="cmd-linux-install" aria-label="Copy Linux install command">
+                        <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Copy</span>
+                      </button>
+                      <span class="tip" role="status"></span>
+                    </span>
+                  </div>
+                  <pre><code id="cmd-linux-install">chmod +x scripts/install_linux.sh && ./scripts/install_linux.sh</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">2</span>
+              <div class="step-body">
+                <strong>Open in Your Browser</strong>
+                <p>Visit <code>http://localhost:5173</code> once the containers finish starting.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <details class="nb-details" style="margin-top:1.25rem;" data-searchable>
+          <summary>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <span>Using only a single docker-compose.yml file (without full source code)?</span>
+          </summary>
+          <div class="details-body">
+            <p>If your organization received only a single <code>docker-compose.yml</code> (or <code>docker-compose.prod.yml</code>) file:</p>
+            <ol>
+              <li>Install and open <strong>Docker Desktop</strong> and wait until it says Running.</li>
+              <li>Put that compose file inside its own dedicated folder (for example, <code>AFT-System</code>).</li>
+              <li>Open Terminal / Command Prompt inside that folder and run:</li>
+            </ol>
+            <div class="code-box">
+              <div class="code-box-head">
+                <span class="code-label">Start ANINAW</span>
+                <span class="copy">
+                  <button type="button" class="copy-button" command="--copy" commandfor="cmd-compose-up" aria-label="Copy docker compose up command">
+                    <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Copy</span>
+                  </button>
+                  <span class="tip" role="status"></span>
+                </span>
+              </div>
+              <pre><code id="cmd-compose-up">docker compose up -d</code></pre>
+            </div>
+            <p>Next time you turn on your computer, open Docker Desktop (or click Start on the project inside Docker Desktop) and go to <code>http://localhost:5173</code>.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="callout callout--mint" data-searchable>
+        <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        <div>
+          <strong>Where all your records are safely stored:</strong>
+          <p style="margin-top:0.25rem;">
+            Your database lives in <code>data/postgres/</code> (or Docker&rsquo;s <code>pgdata</code> volume), receipts &amp; logos live in <code>data/uploads/</code>, and a live Excel-ready log stays updated in <code>data/reports/transactions_log.csv</code>. <strong>Never delete the <code>data/</code> folder</strong> unless you want to erase everything!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: FIRST LOGIN -->
+    <section id="first-login" tabindex="-1" class="section-block" aria-labelledby="login-heading">
+      <div class="section-head">
+        <span class="nb-tag nb-tag--mint">Step 2 of 5</span>
+        <h2 id="login-heading">First Login &amp; 5-Minute Setup</h2>
+        <p>When you open ANINAW for the first time, sign in using the default administrator account, then change the password right away.</p>
+      </div>
+
+      <div class="nb-card nb-card--gold" data-searchable>
+        <h3 style="margin-bottom:0.85rem;">Default Login Details</h3>
+        <div class="cred-grid">
+          <div class="cred-item">
+            <span class="nb-tag nb-tag--sky">Web Address</span>
+            <div class="cred-value-row">
+              <span id="cred-url" class="cred-value">http://localhost:5173</span>
+              <span class="copy">
+                <button type="button" class="copy-button" command="--copy" commandfor="cred-url" aria-label="Copy app URL">
+                  <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </button>
+                <span class="tip" role="status"></span>
+              </span>
+            </div>
+          </div>
+
+          <div class="cred-item">
+            <span class="nb-tag nb-tag--mint">Default Username</span>
+            <div class="cred-value-row">
+              <span id="cred-user" class="cred-value">admin</span>
+              <span class="copy">
+                <button type="button" class="copy-button" command="--copy" commandfor="cred-user" aria-label="Copy default username">
+                  <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </button>
+                <span class="tip" role="status"></span>
+              </span>
+            </div>
+          </div>
+
+          <div class="cred-item">
+            <span class="nb-tag nb-tag--coral">Default Password</span>
+            <div class="cred-value-row">
+              <span id="cred-pass" class="cred-value">admin123</span>
+              <span class="copy">
+                <button type="button" class="copy-button" command="--copy" commandfor="cred-pass" aria-label="Copy default password">
+                  <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </button>
+                <span class="tip" role="status"></span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top:0.85rem;font-weight:600;">
+          Multi-organization setup? Your platform administrator signs in with <code>superadmin</code> / <code>superadmin123</code> (and creates each org&rsquo;s own Admin account from the Superadmin portal).
+        </p>
+      </div>
+
+      <div class="nb-card" data-searchable>
+        <h3 style="margin-bottom:1rem;">First 4 Things To Do After Logging In</h3>
+        <ol class="step-list">
+          <li class="step-item">
+            <span class="step-num" aria-hidden="true">1</span>
+            <div class="step-body">
+              <strong>Change the Default Admin Password</strong>
+              <p>Go to <strong>Settings &rarr; Security</strong>, click <strong>Change Password</strong>, and save a password your officers will remember (write it in your org handover notebook or password manager!).</p>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-num" aria-hidden="true">2</span>
+            <div class="step-body">
+              <strong>Set Your Organization Name, Acronym &amp; Logo</strong>
+              <p>Go to <strong>Settings &rarr; Organization</strong>, fill in your Organization Name and Acronym, upload a logo (PNG/JPG/WebP under 5MB), and click <strong>Save Changes</strong>. This logo appears on your printed PDF reports.</p>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-num" aria-hidden="true">3</span>
+            <div class="step-body">
+              <strong>Create Accounts for Your Treasurer &amp; Auditor</strong>
+              <p>Go to <strong>Settings &rarr; User Management</strong> and click <strong>Add User</strong> so each officer has their own username and role instead of sharing the <code>admin</code> login.</p>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-num" aria-hidden="true">4</span>
+            <div class="step-body">
+              <strong>Set Beginning Balances (If Carrying Over Funds)</strong>
+              <p>If your organization already has starting cash from last semester, open <strong>Ledger &rarr; Other Assets</strong> and click <strong>Establish Beginning Balance</strong>.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SECTION 3: USING AFT -->
+    <section id="using-aft" tabindex="-1" class="section-block" aria-labelledby="usage-heading">
+      <div class="section-head">
+        <span class="nb-tag nb-tag--sky">Step 3 of 5</span>
+        <h2 id="usage-heading">Using the System Day-to-Day</h2>
+        <p>Follow this simple order whenever your organization runs events, handles money, or prepares financial statements.</p>
+      </div>
+
+      <!-- Roles -->
+      <div class="grid-3">
+        <article class="module-card nb-card--mint" data-searchable>
+          <span class="nb-tag nb-tag--navy">Role 1</span>
+          <h3>ADMIN</h3>
+          <p>Full control of the organization workspace. Can manage settings, add/remove users, reset forgotten passwords for Treasurers/Auditors, view Audit Logs, and record transactions.</p>
+        </article>
+        <article class="module-card nb-card--sky" data-searchable>
+          <span class="nb-tag nb-tag--navy">Role 2</span>
+          <h3>TREASURER</h3>
+          <p>Day-to-day finance operator. Creates events, manages accounts, logs transactions with receipts, and updates Supplies, PPE, and Inventory ledgers.</p>
+        </article>
+        <article class="module-card nb-card--gold" data-searchable>
+          <span class="nb-tag nb-tag--navy">Role 3</span>
+          <h3>AUDITOR</h3>
+          <p>Read-only reviewer. All add/edit/delete forms are hidden so records stay safe. Can inspect reports, receipts, Audit Logs, and Transaction Edit History.</p>
+        </article>
+      </div>
+
+      <!-- Modules Grid -->
+      <div class="grid-2">
+        <article class="module-card" data-searchable>
+          <span class="nb-tag">1. Dashboard</span>
+          <h3>Automatic Financial Overview</h3>
+          <p>Your homepage automatically calculates <strong>Cash on Hand</strong>, <strong>Cash in Accounting</strong>, total income/expenses, budget utilization, and liquidation reminders. <strong>You never type directly into the summary boxes.</strong></p>
+        </article>
+
+        <article class="module-card" data-searchable>
+          <span class="nb-tag">2. Events &amp; Accounts</span>
+          <h3>Set Up Events First</h3>
+          <ol>
+            <li>Open <strong>Events &rarr; New Event</strong> before spending money on a project (enter name, dates, allocated budget, and fund source).</li>
+            <li>Check <strong>Accounts</strong> for standard titles like <code>1010 Cash on Hand</code> or <code>4010 Food Expense</code>. Add custom ones with <strong>Add New Account</strong>.</li>
+          </ol>
+        </article>
+
+        <article class="module-card" data-searchable>
+          <span class="nb-tag">3. Journal</span>
+          <h3>Recording Transactions &amp; Receipts</h3>
+          <p>Click <strong>New Entry</strong> and pick one of the 5 transaction modes:</p>
+          <ul>
+            <li><strong>Income / Expense:</strong> Money received or spent.</li>
+            <li><strong>Accounting Cash Flows:</strong> Deposits, Withdrawals, or cash moves.</li>
+            <li><strong>Supplies / PPE:</strong> Buying supplies or equipment.</li>
+            <li><strong>Liabilities:</strong> Borrowed money or paid debt.</li>
+            <li><strong>To Collect:</strong> Receivables owed to or paid back to the org.</li>
+          </ul>
+          <p><strong>Receipt rule:</strong> Attach a clear PNG, JPG, or PDF receipt (max 5MB). Made a mistake? Use <strong>Void</strong> or <strong>Edit</strong> so the audit trail stays intact.</p>
+        </article>
+
+        <article class="module-card" data-searchable>
+          <span class="nb-tag">4. Ledger &amp; Budget</span>
+          <h3>Tracking Items, Assets &amp; Funds</h3>
+          <ul>
+            <li><strong>Supplies &amp; Inventory:</strong> Use <strong>New Item</strong> to add items, <strong>(-)</strong> when supplies are used, or <strong>Sell Item</strong> for merchandise.</li>
+            <li><strong>PPE (Equipment):</strong> Register assets with useful life &amp; salvage value—monthly depreciation calculates automatically.</li>
+            <li><strong>Fund Management:</strong> Use <strong>Add Fund Source</strong> &rarr; <strong>Save Budget</strong> to monitor overall funds.</li>
+            <li><strong>Documents:</strong> Store liquidation/withdrawal forms under <strong>General Documents</strong>; Journal receipts appear automatically in <strong>Ledger Receipts</strong>.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="callout callout--sky" data-searchable>
+        <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        <div>
+          <strong>Generating Official Reports &amp; Excel Logs</strong>
+          <p style="margin-top:0.25rem;">
+            Go to <strong>Financial Reports</strong>, choose your date range, and view the <em>Statement of Assets and Liabilities</em>, <em>Statement of Activities</em>, or <em>Statement of Cash Flows</em>. Click <strong>Export CSV</strong> or <strong>Download PDF</strong> anytime—and remember that <code>data/reports/transactions_log.csv</code> inside your project folder also updates live for Excel!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SYSTEM SLOWING DOWN -->
+    <section id="slow-system" tabindex="-1" class="section-block" aria-labelledby="slow-heading">
+      <div class="section-head">
+        <span class="nb-tag">Step 4 of 5 &bull; Troubleshooting</span>
+        <h2 id="slow-heading">System Feeling Slow? Easy Fixes</h2>
+        <p>If pages are taking too long to load or buttons feel sluggish, try these simple, non-technical steps in order. <strong>None of these steps will delete your records.</strong></p>
+      </div>
+
+      <div class="callout callout--mint" data-searchable>
+        <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 11.5 14.5 16 9.5"></polyline></svg>
+        <div>
+          <strong>Good news first:</strong>
+          <p style="margin-top:0.2rem;">A slow screen almost always means your computer is temporarily busy or out of memory—it does <strong>not</strong> mean your database is corrupted or your data is lost.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <article class="nb-card" data-searchable>
+          <span class="nb-tag nb-tag--mint">Fix 1 &bull; Safest First Step</span>
+          <h3 style="margin-top:0.75rem;">Restart the App in Docker Desktop</h3>
+          <p style="margin-top:0.5rem;">Just like a phone or browser, restarting the app clears temporary sluggishness while keeping every transaction and receipt untouched.</p>
+          <ol class="step-list" style="margin-top:0.9rem;">
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">1</span>
+              <div class="step-body"><p>Open the <strong>Docker Desktop</strong> window from your taskbar or menu bar.</p></div>
+            </li>
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">2</span>
+              <div class="step-body"><p>Find your AFT stack (<code>aft_backend</code>, <code>aft_db</code>, <code>aft_frontend</code>) and click the <strong>Stop</strong> button.</p></div>
+            </li>
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">3</span>
+              <div class="step-body"><p>Wait <strong>10 seconds</strong>, click <strong>Start</strong>, wait until all icons are green, then refresh <code>http://localhost:5173</code>.</p></div>
+            </li>
+          </ol>
+        </article>
+
+        <article class="nb-card" data-searchable>
+          <span class="nb-tag nb-tag--sky">Fix 2 &bull; Free Up Laptop Power</span>
+          <h3 style="margin-top:0.75rem;">Close Extra Tabs &amp; Plug In Charger</h3>
+          <ul style="margin-top:0.85rem;padding-inline-start:1.25rem;display:flex;flex-direction:column;gap:0.55rem;">
+            <li><strong>Close heavy apps &amp; extra browser tabs:</strong> Docker needs room in your laptop&rsquo;s memory (RAM). Having 20+ Chrome tabs, video calls, or games open makes ANINAW lag.</li>
+            <li><strong>Plug in your laptop charger:</strong> Windows and Mac laptops slow down their processor on <em>Battery Saver / Low Power Mode</em>, which slows down reports and PDF exports.</li>
+            <li><strong>Give Docker 30–60 seconds after booting:</strong> Right after turning on your computer, wait until Docker Desktop finishes starting before opening the browser.</li>
+          </ul>
+        </article>
+
+        <article class="nb-card" data-searchable>
+          <span class="nb-tag nb-tag--gold">Fix 3 &bull; Faster Saving</span>
+          <h3 style="margin-top:0.75rem;">Keep Receipt Photos Reasonably Sized</h3>
+          <p style="margin-top:0.5rem;">
+            High-resolution phone photos or multi-page scanner PDFs can be huge (4–5MB each), which slows down uploading and viewing receipts over time.
+          </p>
+          <p style="margin-top:0.65rem;">
+            <strong>Tip:</strong> Send/compress receipt photos (for example via Messenger/compressed photo or a clean screenshot) so they stay clear to read without taking up several megabytes per file.
+          </p>
+        </article>
+
+        <article class="nb-card nb-card--coral" data-searchable>
+          <span class="nb-tag nb-tag--navy">Important &bull; Avoid Mistakes</span>
+          <h3 style="margin-top:0.75rem;">What NOT To Do When It&rsquo;s Slow</h3>
+          <ul style="margin-top:0.85rem;padding-inline-start:1.25rem;display:flex;flex-direction:column;gap:0.55rem;">
+            <li><strong>Don&rsquo;t spam-click Save / Submit:</strong> If a button is spinning, wait a few seconds so you don&rsquo;t submit duplicate entries.</li>
+            <li><strong>Don&rsquo;t delete the <code>data/</code> folder or Docker volumes:</strong> That deletes your database and receipts!</li>
+            <li><strong>Don&rsquo;t click &ldquo;Wipe All Data&rdquo; in Settings:</strong> That permanently erases all financial records.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 5: FORGOT PASSWORD -->
+    <section id="forgot-password" tabindex="-1" class="section-block" aria-labelledby="password-heading">
+      <div class="section-head">
+        <span class="nb-tag nb-tag--coral">Step 5 of 5 &bull; Account Rescue</span>
+        <h2 id="password-heading">Forgot Your Password? Reset Without Losing Data</h2>
+        <p>Which account is locked out? Choose the matching option below.</p>
+      </div>
+
+      <div class="grid-2">
+        <article class="nb-card nb-card--sky" data-searchable>
+          <span class="nb-tag nb-tag--navy">Option A &bull; No Commands Needed</span>
+          <h3 style="margin-top:0.75rem;">Treasurer, Auditor, or Secondary User</h3>
+          <ol class="step-list" style="margin-top:0.9rem;">
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">1</span>
+              <div class="step-body"><p>Ask anyone with an <strong>ADMIN</strong> login on your team to sign in to ANINAW.</p></div>
+            </li>
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">2</span>
+              <div class="step-body"><p>Open <strong>Settings &rarr; User Management</strong>.</p></div>
+            </li>
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">3</span>
+              <div class="step-body"><p>Click the <strong>Key icon (Reset Password)</strong> next to your username and enter a new password. Done!</p></div>
+            </li>
+          </ol>
+        </article>
+
+        <article class="nb-card nb-card--gold" data-searchable>
+          <span class="nb-tag nb-tag--coral">Option B &bull; Admin Lockout Rescue</span>
+          <h3 style="margin-top:0.75rem;">Locked Out of the Main <code>admin</code> Account</h3>
+          <p style="margin-top:0.5rem;">
+            First, try the default password <code>admin123</code> in case it was never changed. If that says <strong>Invalid credentials</strong>, use the <strong>One-Command Rescue Tool</strong> below—it updates <em>only</em> the password and keeps 100% of your records safe.
+          </p>
+        </article>
+      </div>
+
+      <!-- INTERACTIVE PASSWORD RESET BUILDER -->
+      <div class="nb-card" data-searchable>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.75rem;margin-bottom:1rem;">
+          <div>
+            <span class="nb-tag nb-tag--mint">Zero Data Loss Tool</span>
+            <h3 style="margin-top:0.5rem;">Interactive Password Reset Command Builder</h3>
+          </div>
+          <p class="field-note">Type your new password below, copy the generated command, and run it once.</p>
+        </div>
+
+        <form class="builder-form" onsubmit="return false;">
+          <div class="field-group">
+            <label for="reset-pass-input">1. Choose New Password</label>
+            <div class="input-with-toggle">
+              <input
+                id="reset-pass-input"
+                class="nb-input"
+                type="text"
+                value="YourNewPassword"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button
+                id="toggle-pass-visibility"
+                type="button"
+                class="nb-btn nb-btn--white"
+                aria-pressed="true"
+                aria-label="Hide or show new password"
+              >Hide</button>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="reset-user-select">2. Which Account?</label>
+            <select id="reset-user-select" class="nb-select">
+              <option value="admin" selected>admin (Default Admin)</option>
+              <option value="superadmin">superadmin (Superadmin)</option>
+              <option value="custom">Custom username&hellip;</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="reset-env-select">3. Where Are You Running This?</label>
+            <select id="reset-env-select" class="nb-select">
+              <option value="running-unix" selected>Running (Mac / Linux / PowerShell)</option>
+              <option value="running-cmd">Running (Windows CMD)</option>
+              <option value="stopped-compose">Stopped (Project Folder)</option>
+            </select>
+          </div>
+
+          <div id="custom-user-wrap" class="field-group" hidden>
+            <label for="reset-custom-user">Enter Exact Username</label>
+            <input
+              id="reset-custom-user"
+              class="nb-input"
+              type="text"
+              placeholder="e.g. jpia_admin"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+        </form>
+
+        <p id="reset-builder-warning" class="field-error" style="margin-top:0.75rem;" hidden role="status"></p>
+
+        <div class="code-box" style="margin-top:1.15rem;">
+          <div class="code-box-head">
+            <span class="code-label">One-Line Reset Command (Safe &bull; No Data Lost)</span>
+            <span class="copy">
+              <button type="button" class="copy-button" command="--copy" commandfor="reset-cmd-output" aria-label="Copy password reset command">
+                <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Copy Command</span>
+              </button>
+              <span class="tip" role="status"></span>
+            </span>
+          </div>
+          <pre><code id="reset-cmd-output">docker exec -e NEW_PASS='YourNewPassword' aft_backend node -e 'const bcrypt=require("bcrypt"),{PrismaClient}=require("@prisma/client"),p=new PrismaClient();bcrypt.hash(process.env.NEW_PASS,10).then(h=&gt;p.user.update({where:{username:"admin"},data:{passwordHash:h}})).then(u=&gt;console.log("Updated password for:",u.username)).finally(()=&gt;p.$disconnect())'</code></pre>
+        </div>
+
+        <ol class="step-list" style="margin-top:1.25rem;">
+          <li class="step-item">
+            <span class="step-num" aria-hidden="true">1</span>
+            <div class="step-body">
+              <strong>Make sure ANINAW is open in Docker Desktop</strong>
+              <p>If using a &ldquo;Running&rdquo; option, check Docker Desktop and make sure <code>aft_backend</code> and <code>aft_db</code> are green/running.</p>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-num" aria-hidden="true">2</span>
+            <div class="step-body">
+              <strong>Open Terminal / PowerShell and Paste</strong>
+              <p>On Windows, press the <kbd>Windows</kbd> key, type <strong>PowerShell</strong> (or <strong>cmd</strong> if you picked Windows CMD), and press <kbd>Enter</kbd>. On Mac, open <strong>Terminal</strong>. Right-click to paste the command and press <kbd>Enter</kbd>.</p>
+            </div>
+          </li>
+          <li class="step-item">
+            <span class="step-num" aria-hidden="true">3</span>
+            <div class="step-body">
+              <strong>Confirm &amp; Sign In</strong>
+              <p>When you see <code id="expected-reset-msg">Updated password for: admin</code>, refresh <code>http://localhost:5173</code> and log in with your new password!</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SECTION 6: FAQ -->
+    <section id="faq" tabindex="-1" class="section-block" aria-labelledby="faq-heading">
+      <div class="section-head">
+        <div class="accordion-toolbar" style="width:100%;">
+          <div>
+            <span class="nb-tag nb-tag--navy">Quick Answers</span>
+            <h2 id="faq-heading" style="margin-top:0.5rem;">Frequently Asked Questions</h2>
+          </div>
+          <button
+            type="button"
+            class="nb-btn nb-btn--white"
+            commandfor="faq-accordion"
+            command="--toggle-all"
+            aria-expanded="false"
+          >
+            <span class="label-expand">Expand all</span>
+            <span class="label-collapse">Collapse all</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="faq-accordion" class="accordion-list">
+        <details class="nb-details" data-searchable>
+          <summary>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <span>Will restarting Docker or resetting the admin password wipe our financial data?</span>
+          </summary>
+          <div class="details-body">
+            <p><strong>No.</strong> All transactions, accounts, events, receipts, and users are saved inside your local <code>data/</code> folder (or Docker&rsquo;s <code>pgdata</code> volume). Restarting Docker Desktop or running the one-line password reset only changes that user&rsquo;s password—nothing else is touched.</p>
+          </div>
+        </details>
+
+        <details class="nb-details" data-searchable>
+          <summary>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <span>Why does it say &ldquo;Invalid credentials&rdquo; even when I type admin123?</span>
+          </summary>
+          <div class="details-body">
+            <p>Someone already changed the <code>admin</code> password after the first setup, or you are signing in to a newly created organization whose admin username/password was set by the Superadmin. Restarting the app keeps your changed password, so use the <a href="#forgot-password">Password Reset Command Builder</a> above to set a fresh password.</p>
+          </div>
+        </details>
+
+        <details class="nb-details" data-searchable>
+          <summary>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <span>What if it says &ldquo;Organization is disabled&rdquo; when trying to log in?</span>
+          </summary>
+          <div class="details-body">
+            <p>If your school or council uses the multi-organization version of AFT, the platform <strong>Superadmin</strong> can temporarily enable or disable an organization&rsquo;s access. Contact your Superadmin so they can toggle your organization back to <strong>ACTIVE</strong>.</p>
+          </div>
+        </details>
+
+        <details class="nb-details" data-searchable>
+          <summary>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <span>Can I view all transactions in Microsoft Excel?</span>
+          </summary>
+          <div class="details-body">
+            <p>Yes! Two ways:</p>
+            <ul>
+              <li>Inside ANINAW, open <strong>Financial Reports</strong> and click <strong>Export CSV</strong> (or <strong>Download PDF</strong>).</li>
+              <li>Inside your project folder, open <code>data/reports/transactions_log.csv</code> directly in Excel—it stays updated automatically as transactions are recorded.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="nb-details" data-searchable>
+          <summary>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <span>What should I do if I entered the wrong amount on a transaction?</span>
+          </summary>
+          <div class="details-body">
+            <p>Open <strong>Journal</strong>, find the entry using the search bar, and click <strong>Edit</strong> or <strong>Void</strong>. ANINAW keeps an audit history of edits and voids so your Auditor can verify every change cleanly.</p>
+          </div>
+        </details>
+
+        <details class="nb-details" data-searchable>
+          <summary>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <span>How do I turn the app off safely when I&rsquo;m done for the day?</span>
+          </summary>
+          <div class="details-body">
+            <p>Just close your browser tab, or open <strong>Docker Desktop</strong> and click <strong>Stop</strong> on your AFT containers (or run <code>docker compose down</code> inside your AFT folder). Your data stays saved safely on your computer for next time.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>ANINAW — Automated Fund Tracker (AFT)</strong>
+        <p style="font-size:0.9rem;opacity:0.9;">Help &amp; User Guide for JPIA-USLT, SSC-USLT &amp; ICpEP.se-USLT &bull; Hosted at <code>aft.amiel.codes</code></p>
+      </div>
+      <a href="#top">Back to top &uarr;</a>
+    </div>
+  </footer>
+</body>
+</html>
