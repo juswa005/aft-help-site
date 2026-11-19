@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: aft_db
+    environment:
+      POSTGRES_USER: aft_user
+      POSTGRES_PASSWORD: aft_password
+      POSTGRES_DB: aft_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  backend:
+    image: amielbasug/aft-backend:v2.0.0
+    container_name: aft_backend
+    ports:
+      - "5001:5000"
+    environment:
+      DATABASE_URL: postgresql://aft_user:aft_password@db:5432/aft_db?schema=public
+      PORT: 5000
+    volumes:
+      - ./data/uploads:/app/uploads
+      - ./data/reports:/app/reports
+    depends_on:
+      - db
+    restart: unless-stopped
+    command: sh -c "npx prisma db push --accept-data-loss && npx prisma db seed && node dist/index.js"
+
+  frontend:
+    image: amielbasug/aft-frontend:v2.0.0
+    container_name: aft_frontend
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: ""
+    depends_on:
+      - backend
+    restart: unless-stopped

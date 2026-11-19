@@ -1106,6 +1106,22 @@ section[tabindex="-1"]:focus-visible {
   box-shadow: 0 0 0 4px var(--gold), var(--shadow-md);
 }
 
+.download-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.download-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  max-inline-size: 62ch;
+}
+
 /* Footer */
 .site-footer {
   border-block-start: var(--border-w) solid var(--ink);

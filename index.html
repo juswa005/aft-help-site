@@ -59,6 +59,10 @@
           Your plain-language handbook—from installing the app on your computer and logging in for the first time, to tracking funds, speeding up a sluggish app, and recovering a forgotten password <strong>without losing a single record</strong>.
         </p>
         <div class="hero-actions">
+          <a class="nb-btn nb-btn--mint" href="./docker-compose.yml" download="docker-compose.yml">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Download docker-compose.yml</span>
+          </a>
           <a class="nb-btn nb-btn--navy" href="#install">Start Installing</a>
           <a class="nb-btn nb-btn--gold" href="#slow-system">App Running Slow?</a>
           <a class="nb-btn nb-btn--orange" href="#forgot-password">Forgot Password?</a>
@@ -106,9 +110,9 @@
           <div>
             <span class="nb-tag nb-tag--sky">New Computer?</span>
             <h2 style="margin-top:0.75rem;">Install &amp; Launch AFT</h2>
-            <p style="margin-top:0.5rem;">You only need <strong>Docker Desktop</strong>. No coding tools or manual database setup required.</p>
+            <p style="margin-top:0.5rem;">Download <code>docker-compose.yml</code> and run it with <strong>Docker Desktop</strong>—no coding tools or manual database setup required.</p>
           </div>
-          <a class="nb-btn nb-btn--white" href="#install">Go to Setup Steps &rarr;</a>
+          <a class="nb-btn nb-btn--white" href="#install">Get File &amp; Setup Steps &rarr;</a>
         </article>
 
         <article class="triage-card triage-card--slow" data-searchable>
@@ -136,7 +140,86 @@
       <div class="section-head">
         <span class="nb-tag nb-tag--sky">Step 1 of 5</span>
         <h2 id="install-heading">Installing &amp; Opening the System</h2>
-        <p>ANINAW runs right on your laptop or desktop inside <strong>Docker Desktop</strong>. Follow the tab for your computer below.</p>
+        <p>ANINAW runs right on your laptop or desktop inside <strong>Docker Desktop</strong>. Download the config file below, place it in its own folder, and start it once.</p>
+      </div>
+
+      <!-- DOWNLOAD DOCKER-COMPOSE.YML -->
+      <div class="nb-card nb-card--mint" data-searchable>
+        <div class="download-row">
+          <div class="download-copy">
+            <span class="nb-tag nb-tag--navy">Required Setup File &bull; v2.0.0</span>
+            <h3>1. Download <code>docker-compose.yml</code></h3>
+            <p>You don&rsquo;t need the full source code. Save this single file inside a dedicated empty folder on your computer (for example, <code>AFT-System</code>).</p>
+          </div>
+          <div class="hero-actions">
+            <a class="nb-btn nb-btn--navy" href="./docker-compose.yml" download="docker-compose.yml">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Download docker-compose.yml</span>
+            </a>
+          </div>
+        </div>
+
+        <details class="nb-details" style="margin-top:1rem;">
+          <summary>
+            <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <span>Preview or copy docker-compose.yml contents manually</span>
+          </summary>
+          <div class="details-body" style="max-inline-size:none;">
+            <div class="code-box">
+              <div class="code-box-head">
+                <span class="code-label">docker-compose.yml</span>
+                <span class="copy">
+                  <button type="button" class="copy-button" command="--copy" commandfor="compose-yaml-preview" aria-label="Copy docker-compose.yml contents">
+                    <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Copy YAML</span>
+                  </button>
+                  <span class="tip" role="status"></span>
+                </span>
+              </div>
+              <pre><code id="compose-yaml-preview">services:
+  db:
+    image: postgres:15-alpine
+    container_name: aft_db
+    environment:
+      POSTGRES_USER: aft_user
+      POSTGRES_PASSWORD: aft_password
+      POSTGRES_DB: aft_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  backend:
+    image: amielbasug/aft-backend:v2.0.0
+    container_name: aft_backend
+    ports:
+      - "5001:5000"
+    environment:
+      DATABASE_URL: postgresql://aft_user:aft_password@db:5432/aft_db?schema=public
+      PORT: 5000
+    volumes:
+      - ./data/uploads:/app/uploads
+      - ./data/reports:/app/reports
+    depends_on:
+      - db
+    restart: unless-stopped
+    command: sh -c "npx prisma db push --accept-data-loss && npx prisma db seed && node dist/index.js"
+
+  frontend:
+    image: amielbasug/aft-frontend:v2.0.0
+    container_name: aft_frontend
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: ""
+    depends_on:
+      - backend
+    restart: unless-stopped</code></pre>
+            </div>
+          </div>
+        </details>
       </div>
 
       <div class="nb-card" data-searchable>
@@ -175,22 +258,43 @@
             <li class="step-item">
               <span class="step-num" aria-hidden="true">1</span>
               <div class="step-body">
-                <strong>Install Docker Desktop</strong>
-                <p>Download and install Docker Desktop for Windows from <strong>docs.docker.com/desktop</strong>. Open Docker Desktop and wait until the bottom-left / tray icon turns green (running).</p>
+                <strong>Install &amp; Open Docker Desktop</strong>
+                <p>Download Docker Desktop for Windows from <strong>docs.docker.com/desktop</strong>. Open it and wait until the bottom-left / tray icon turns green (Running).</p>
               </div>
             </li>
             <li class="step-item">
               <span class="step-num" aria-hidden="true">2</span>
               <div class="step-body">
-                <strong>Run the One-Click Installer (or Docker Compose)</strong>
-                <p>Open the AFT project folder, open the <code>scripts</code> folder, and double-click <code>install_windows.bat</code>. (If Windows asks for Administrator permission, click <strong>Yes</strong>.) If your computer needs a restart to finish WSL/Docker setup, restart and let it resume automatically.</p>
+                <strong>Put <code>docker-compose.yml</code> in Its Own Folder</strong>
+                <p>Create an empty folder (for example, <code>AFT-System</code> on your Desktop) and move the downloaded <code>docker-compose.yml</code> file inside it.</p>
               </div>
             </li>
             <li class="step-item">
               <span class="step-num" aria-hidden="true">3</span>
               <div class="step-body">
+                <strong>Start ANINAW Inside That Folder</strong>
+                <p>Open the <code>AFT-System</code> folder, click the folder&rsquo;s top address bar, type <code>cmd</code> and press <kbd>Enter</kbd>, then paste and run:</p>
+                <div class="code-box">
+                  <div class="code-box-head">
+                    <span class="code-label">Windows Command Prompt</span>
+                    <span class="copy">
+                      <button type="button" class="copy-button" command="--copy" commandfor="cmd-win-up" aria-label="Copy Windows start command">
+                        <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Copy</span>
+                      </button>
+                      <span class="tip" role="status"></span>
+                    </span>
+                  </div>
+                  <pre><code id="cmd-win-up">docker compose up -d</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">4</span>
+              <div class="step-body">
                 <strong>Open ANINAW in Your Browser</strong>
-                <p>Wait 2–5 minutes on the very first launch while Docker downloads the app files. Your browser will open automatically, or you can visit <code>http://localhost:5173</code> (or use the new <em>Automated Fund Tracker</em> shortcut on your Desktop).</p>
+                <p>Wait 2–3 minutes on the first run while Docker downloads ANINAW. Then open <code>http://localhost:5173</code> in your browser!</p>
               </div>
             </li>
           </ol>
@@ -201,22 +305,43 @@
             <li class="step-item">
               <span class="step-num" aria-hidden="true">1</span>
               <div class="step-body">
-                <strong>Open the Installer</strong>
-                <p>Open the AFT project folder, open <code>scripts</code>, and double-click <code>install_mac.command</code>. It automatically checks for Homebrew and Docker Desktop, installs them if missing, and starts Docker.</p>
+                <strong>Install &amp; Open Docker Desktop</strong>
+                <p>Download Docker Desktop for Mac from <strong>docs.docker.com/desktop</strong>, drag it to Applications, and wait until Docker shows Running in your menu bar.</p>
               </div>
             </li>
             <li class="step-item">
               <span class="step-num" aria-hidden="true">2</span>
               <div class="step-body">
-                <strong>Allow Docker &amp; Wait for First Launch</strong>
-                <p>If macOS asks for your Mac password or permission, approve it. Wait a few minutes on the first run for the app containers to finish setting up.</p>
+                <strong>Put <code>docker-compose.yml</code> in Its Own Folder</strong>
+                <p>Create a folder (such as <code>AFT-System</code> on your Desktop) and move the downloaded <code>docker-compose.yml</code> file into it.</p>
               </div>
             </li>
             <li class="step-item">
               <span class="step-num" aria-hidden="true">3</span>
               <div class="step-body">
+                <strong>Start ANINAW via Terminal</strong>
+                <p>Right-click your <code>AFT-System</code> folder &rarr; <strong>New Terminal at Folder</strong>, then paste and run:</p>
+                <div class="code-box">
+                  <div class="code-box-head">
+                    <span class="code-label">macOS Terminal</span>
+                    <span class="copy">
+                      <button type="button" class="copy-button" command="--copy" commandfor="cmd-mac-up" aria-label="Copy macOS start command">
+                        <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>Copy</span>
+                      </button>
+                      <span class="tip" role="status"></span>
+                    </span>
+                  </div>
+                  <pre><code id="cmd-mac-up">docker compose up -d</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="step-item">
+              <span class="step-num" aria-hidden="true">4</span>
+              <div class="step-body">
                 <strong>Open ANINAW</strong>
-                <p>Your browser will open <code>http://localhost:5173</code> automatically (and a shortcut is saved on your Desktop).</p>
+                <p>Wait 2–3 minutes on the first launch, then visit <code>http://localhost:5173</code> in Safari or Chrome.</p>
               </div>
             </li>
           </ol>
@@ -227,13 +352,13 @@
             <li class="step-item">
               <span class="step-num" aria-hidden="true">1</span>
               <div class="step-body">
-                <strong>Install Docker &amp; Run the Setup Script</strong>
-                <p>Make sure Docker Engine + Docker Compose are installed, then run the setup script inside the project folder:</p>
+                <strong>Move <code>docker-compose.yml</code> &amp; Start Containers</strong>
+                <p>Make sure Docker Engine + Docker Compose plugin are installed, put <code>docker-compose.yml</code> inside its own folder (e.g. <code>~/AFT-System</code>), and run:</p>
                 <div class="code-box">
                   <div class="code-box-head">
                     <span class="code-label">Linux Terminal</span>
                     <span class="copy">
-                      <button type="button" class="copy-button" command="--copy" commandfor="cmd-linux-install" aria-label="Copy Linux install command">
+                      <button type="button" class="copy-button" command="--copy" commandfor="cmd-linux-install" aria-label="Copy Linux start command">
                         <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                         <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
                         <span>Copy</span>
@@ -241,7 +366,7 @@
                       <span class="tip" role="status"></span>
                     </span>
                   </div>
-                  <pre><code id="cmd-linux-install">chmod +x scripts/install_linux.sh && ./scripts/install_linux.sh</code></pre>
+                  <pre><code id="cmd-linux-install">mkdir -p ~/AFT-System && mv ~/Downloads/docker-compose.yml ~/AFT-System/ && cd ~/AFT-System && docker compose up -d</code></pre>
                 </div>
               </div>
             </li>
@@ -258,29 +383,15 @@
         <details class="nb-details" style="margin-top:1.25rem;" data-searchable>
           <summary>
             <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            <span>Using only a single docker-compose.yml file (without full source code)?</span>
+            <span>Have the full project folder with one-click install scripts instead?</span>
           </summary>
           <div class="details-body">
-            <p>If your organization received only a single <code>docker-compose.yml</code> (or <code>docker-compose.prod.yml</code>) file:</p>
-            <ol>
-              <li>Install and open <strong>Docker Desktop</strong> and wait until it says Running.</li>
-              <li>Put that compose file inside its own dedicated folder (for example, <code>AFT-System</code>).</li>
-              <li>Open Terminal / Command Prompt inside that folder and run:</li>
-            </ol>
-            <div class="code-box">
-              <div class="code-box-head">
-                <span class="code-label">Start ANINAW</span>
-                <span class="copy">
-                  <button type="button" class="copy-button" command="--copy" commandfor="cmd-compose-up" aria-label="Copy docker compose up command">
-                    <svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Copy</span>
-                  </button>
-                  <span class="tip" role="status"></span>
-                </span>
-              </div>
-              <pre><code id="cmd-compose-up">docker compose up -d</code></pre>
-            </div>
+            <p>If you received the full repository folder containing <code>scripts/</code>, you can also run the script for your OS:</p>
+            <ul>
+              <li><strong>Windows:</strong> Double-click <code>scripts/install_windows.bat</code></li>
+              <li><strong>macOS:</strong> Double-click <code>scripts/install_mac.command</code></li>
+              <li><strong>Linux:</strong> Run <code>chmod +x scripts/install_linux.sh && ./scripts/install_linux.sh</code></li>
+            </ul>
             <p>Next time you turn on your computer, open Docker Desktop (or click Start on the project inside Docker Desktop) and go to <code>http://localhost:5173</code>.</p>
           </div>
         </details>
@@ -291,7 +402,7 @@
         <div>
           <strong>Where all your records are safely stored:</strong>
           <p style="margin-top:0.25rem;">
-            Your database lives in <code>data/postgres/</code> (or Docker&rsquo;s <code>pgdata</code> volume), receipts &amp; logos live in <code>data/uploads/</code>, and a live Excel-ready log stays updated in <code>data/reports/transactions_log.csv</code>. <strong>Never delete the <code>data/</code> folder</strong> unless you want to erase everything!
+            Inside the same folder as <code>docker-compose.yml</code>, Docker automatically creates a <code>data/</code> folder: your database lives in <code>data/postgres/</code>, receipts &amp; logos live in <code>data/uploads/</code>, and a live Excel-ready log stays updated in <code>data/reports/transactions_log.csv</code>. <strong>Never delete the <code>data/</code> folder</strong> unless you want to erase everything!
           </p>
         </div>
       </div>
@@ -711,7 +822,7 @@
             <span>Will restarting Docker or resetting the admin password wipe our financial data?</span>
           </summary>
           <div class="details-body">
-            <p><strong>No.</strong> All transactions, accounts, events, receipts, and users are saved inside your local <code>data/</code> folder (or Docker&rsquo;s <code>pgdata</code> volume). Restarting Docker Desktop or running the one-line password reset only changes that user&rsquo;s password—nothing else is touched.</p>
+            <p><strong>No.</strong> All transactions, accounts, events, receipts, and users are saved inside your local <code>data/</code> folder next to <code>docker-compose.yml</code>. Restarting Docker Desktop or running the one-line password reset only changes that user&rsquo;s password—nothing else is touched.</p>
           </div>
         </details>
 
